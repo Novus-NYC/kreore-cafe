@@ -11,7 +11,6 @@ export const copy = {
     menu: b("Menu", "Menú"),
     close: b("Close", "Cerrar"),
     skip: b("Skip to content", "Saltar al contenido"),
-    language: b("Language", "Idioma"),
     cta: b("Message us", "Escríbenos"),
     ctaLong: b("Message us on WhatsApp", "Escríbenos por WhatsApp"),
     origin: b("Origin · Colombia", "Origen · Colombia"),

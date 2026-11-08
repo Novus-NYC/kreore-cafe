@@ -124,7 +124,6 @@ export default function ContactPage() {
       <Label tone="pureza" fields={[<T key="m" en="More ways" es="Más formas" />, <T key="f" en="Form · WhatsApp" es="Formulario · WhatsApp" />]}>
         <div className="grid lg:grid-cols-12">
           <Reveal className="tone-bourbon relative p-6 pb-10 md:p-12 md:pb-16 lg:col-span-8">
-            <span aria-hidden="true" className="rule pointer-events-none absolute inset-2 border" />
             <LabelRow left={<T en="Form" es="Formulario" />} right={<T en="Events" es="Eventos" />} className="relative" />
             <h2 className="relative mt-10 max-w-[14ch] font-serif text-d1 font-medium">
               <T
@@ -170,7 +169,7 @@ export default function ContactPage() {
       <Label tone="gesha" fields={[<T key="f" en="Find us" es="Encuéntranos" />, "Brooklyn"]}>
         <div className="grid items-center gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-5 lg:col-start-8 lg:row-start-1">
-            <div className="photo-zoom relative aspect-[4/3] overflow-hidden border border-k-noir">
+            <div className="photo-zoom relative aspect-[4/3] overflow-hidden">
               <Image
                 src={photos.mocadaEntrance.src}
                 alt={photos.mocadaEntrance.alt}

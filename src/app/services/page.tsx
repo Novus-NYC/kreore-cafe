@@ -53,7 +53,7 @@ export default function ServicesPage() {
                 es="Café para oficinas, catering, eventos y experiencias pop-up, con café colombiano de especialidad."
               />
             </p>
-            <ul className="border-t-2 border-k-noir">
+            <ul>
               {services.map((s) => (
                 <li key={s.slug}>
                   <a
@@ -164,7 +164,6 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal i={1} className="lg:col-span-5 lg:col-start-8 lg:mt-24">
             <div className="tone-pureza relative p-6 md:p-8">
-              <span aria-hidden="true" className="rule pointer-events-none absolute inset-2 border" />
               <LabelRow
                 left={<T en="To begin" es="Para empezar" />}
                 right={<T en="Form" es="Formulario" />}

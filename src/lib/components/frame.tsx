@@ -33,7 +33,7 @@ export function Frame({
 }: FrameProps) {
   return (
     <figure className={className}>
-      <div className={`rule photo-zoom relative overflow-hidden border ${ratio}`}>
+      <div className={`photo-zoom relative overflow-hidden ${ratio}`}>
         <Image
           src={photo.src}
           alt={photo.alt}

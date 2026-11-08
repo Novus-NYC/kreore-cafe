@@ -50,14 +50,14 @@ function CoffeeBand({ coffee, index }: { coffee: Coffee; index: number }) {
               note={<T en="Office and travel" es="Oficina y viaje" />}
             />
           ) : null}
-          <dl className="rule grid grid-cols-2 border-t">
-            <div className="rule border-b border-r py-3 pr-3">
+          <dl className="grid grid-cols-2 gap-x-6">
+            <div className="py-3">
               <dt className="label-row">
                 <T t={kindLabel[coffee.kind]} />
               </dt>
               <dd className="mt-1">{coffee.name}</dd>
             </div>
-            <div className="rule border-b py-3 pl-4">
+            <div className="py-3">
               <dt className="label-row">
                 <T en="Origin" es="Origen" />
               </dt>

@@ -34,7 +34,7 @@ const half = "wordmark block text-[clamp(3.5rem,17vw,14.5rem)] leading-[0.82] tr
 
 function Entry({ word, from, en, es }: { word: string; from: string; en: string; es: string }) {
   return (
-    <div className="rule mt-6 border-t pt-4 md:mt-8 md:pt-5">
+    <div className="mt-6 md:mt-8">
       <p className="flex flex-wrap items-baseline gap-x-3">
         <span lang="es" className="font-serif text-[clamp(2.2rem,4.4vw,4rem)] font-medium italic leading-none">
           {word}
@@ -86,7 +86,7 @@ export default function StoryPage() {
             </Reveal>
           </div>
 
-          <Reveal i={2} className="mt-14 grid gap-6 border-t-2 border-k-gesha pt-6 md:mt-20 md:grid-cols-12 md:items-end">
+          <Reveal i={2} className="mt-14 grid gap-6 md:mt-20 md:grid-cols-12 md:items-end">
             <p className="label-row md:col-span-3">
               <T en="Together, the motto" es="Juntas, el lema" />
             </p>
@@ -147,7 +147,7 @@ export default function StoryPage() {
               <T en="The founder, field by field." es="La fundadora, campo por campo." />
             </h2>
           </Reveal>
-          <dl className="border-y-2 border-k-noir lg:col-span-7 lg:col-start-6">
+          <dl className="lg:col-span-7 lg:col-start-6">
             {sheet.map((row, i) => (
               <Reveal
                 key={row.k.en}
@@ -182,7 +182,7 @@ export default function StoryPage() {
           </div>
         </Reveal>
         <div className="wrap relative">
-          <Reveal className="tone-noir relative -mt-24 mb-16 max-w-[34rem] border border-k-gesha p-6 md:-mt-40 md:mb-24 md:p-10">
+          <Reveal className="tone-noir relative -mt-24 mb-16 max-w-[34rem] p-6 md:-mt-40 md:mb-24 md:p-10">
             <p className="label-row">
               <T t={copy.nav.origin} /> · <T en="Farm" es="Finca" />
             </p>

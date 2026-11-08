@@ -145,7 +145,6 @@ export default function Navbar() {
           aria-label={t(copy.nav.menu)}
           className="tone-noir fixed inset-0 z-[60] flex flex-col overflow-y-auto lg:hidden"
         >
-          <div aria-hidden="true" className="rule pointer-events-none absolute inset-4 border" />
           <div className="wrap relative flex h-16 items-center justify-between">
             <span className="wordmark text-[1.35rem] leading-none">{site.wordmark}</span>
             <button
@@ -157,14 +156,14 @@ export default function Navbar() {
             </button>
           </div>
           <div className="wrap relative flex flex-1 flex-col pb-10 pt-6">
-            <div className="label-row rule flex items-center justify-between border-b pb-1">
+            <div className="label-row flex items-center justify-between">
               <span>{t(copy.nav.origin)}</span>
               <LangToggle className="-mr-3 text-k-pureza" />
             </div>
             <nav aria-label={t(copy.nav.menu)} className="mt-6">
               <ul>
                 <li>
-                  <Link href="/" onClick={() => setOpen(false)} className="rule block border-b py-3 font-serif text-[2.6rem] italic leading-tight">
+                  <Link href="/" onClick={() => setOpen(false)} className="block py-3 font-serif text-[2.6rem] italic leading-tight">
                     {t(copy.nav.home)}
                   </Link>
                 </li>
@@ -174,7 +173,7 @@ export default function Navbar() {
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={pathname === item.href ? "page" : undefined}
-                      className="rule block border-b py-3 font-serif text-[2.6rem] leading-tight"
+                      className="block py-3 font-serif text-[2.6rem] leading-tight"
                     >
                       {t(item.label)}
                     </Link>

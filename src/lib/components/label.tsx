@@ -41,7 +41,6 @@ export function Label({
 }: LabelProps) {
   return (
     <section id={id} className={`tone-${tone} relative ${className}`} {...rest}>
-      <div aria-hidden="true" className="rule pointer-events-none absolute inset-2 border sm:inset-4 md:inset-6" />
       <div
         className={`wrap relative ${first ? "pt-24 md:pt-28" : "pt-10 md:pt-14"} ${bottomPad[pad]} ${innerClassName}`}
       >
@@ -62,7 +61,7 @@ export function LabelRow({
   className?: string
 }) {
   return (
-    <div className={`label-row rule flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b pb-3 ${className}`}>
+    <div className={`label-row flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 ${className}`}>
       <span className="whitespace-nowrap">{left}</span>
       {right ? <span className="whitespace-nowrap text-right">{right}</span> : null}
     </div>

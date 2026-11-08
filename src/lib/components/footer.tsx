@@ -10,13 +10,12 @@ export default function Footer() {
   const year = new Date().getFullYear()
   return (
     <footer className="tone-noir relative overflow-hidden">
-      <div aria-hidden="true" className="rule pointer-events-none absolute inset-2 border sm:inset-4 md:inset-6" />
       <div className="wrap relative pb-12 pt-12 md:pb-16 md:pt-16">
-        <p className="label-row rule flex justify-between gap-6 border-b pb-3">
-          <span>
+        <p className="label-row flex justify-between gap-6">
+          <span className="whitespace-nowrap">
             <T en="Colombian specialty coffee" es="Café de especialidad colombiano" />
           </span>
-          <span>
+          <span className="hidden whitespace-nowrap sm:inline">
             <T en="Made in New York" es="Hecho en Nueva York" />
           </span>
         </p>

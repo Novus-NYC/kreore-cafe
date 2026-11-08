@@ -14,11 +14,11 @@ import { mailto, site } from "@/lib/site"
 
 // Masonry placement on the shelf: varied spans so no two labels share a size.
 const shelfLayout: Record<string, string> = {
-  "pink-bourbon": "sm:col-span-6 lg:col-span-5 lg:row-span-2 min-h-[22rem] lg:min-h-0",
-  gesha: "sm:col-span-6 lg:col-span-7 min-h-[15rem]",
-  pureza: "sm:col-span-3 lg:col-span-3 min-h-[15rem]",
-  "noir-82": "sm:col-span-3 lg:col-span-4 lg:row-span-2 min-h-[22rem] lg:min-h-0",
-  pacamara: "sm:col-span-6 lg:col-span-5 min-h-[15rem]",
+  "pink-bourbon": "sm:col-span-6 lg:col-span-5 lg:row-span-2 min-h-[13rem] sm:min-h-[22rem] lg:min-h-0",
+  gesha: "sm:col-span-6 lg:col-span-7 min-h-[13rem] sm:min-h-[15rem]",
+  pureza: "sm:col-span-3 lg:col-span-3 min-h-[13rem] sm:min-h-[15rem]",
+  "noir-82": "sm:col-span-3 lg:col-span-4 lg:row-span-2 min-h-[13rem] sm:min-h-[22rem] lg:min-h-0",
+  pacamara: "sm:col-span-6 lg:col-span-5 min-h-[13rem] sm:min-h-[15rem]",
   sachets: "sm:col-span-6 lg:col-span-3 min-h-[18rem]",
 }
 
@@ -32,7 +32,6 @@ function ShelfLabel({ coffee, i }: { coffee: Coffee; i: number }) {
           coffee.tone === "pureza" ? "border border-k-noir" : ""
         }`}
       >
-        <span aria-hidden="true" className="rule pointer-events-none absolute inset-2 border" />
         <span className="label-row relative flex justify-between gap-3">
           <span>
             <T t={kindLabel[coffee.kind]} />
@@ -40,7 +39,7 @@ function ShelfLabel({ coffee, i }: { coffee: Coffee; i: number }) {
           <span>Colombia</span>
         </span>
         {coffee.photo ? (
-          <span className="rule relative mt-4 block min-h-[10rem] flex-1 overflow-hidden border">
+          <span className="relative mt-4 block min-h-[10rem] flex-1 overflow-hidden">
             <Image
               src={photos.sachetsShelf.src}
               alt={photos.sachetsShelf.alt}
@@ -149,7 +148,6 @@ export default function HomePage() {
                 i={3}
                 className="tone-pureza absolute bottom-5 left-5 w-[15rem] border border-k-noir p-4 sm:left-0 lg:-left-16 lg:bottom-24 lg:w-[17rem] lg:p-5"
               >
-                <span aria-hidden="true" className="rule pointer-events-none absolute inset-1.5 border" />
                 <p className="wordmark relative text-[1.5rem] leading-none">{site.wordmark}</p>
                 <dl className="relative mt-3 text-[0.9rem] leading-snug">
                   <div className="rule flex justify-between gap-3 border-t py-1.5">
@@ -206,7 +204,7 @@ export default function HomePage() {
               />
             </h2>
           </Reveal>
-          <Reveal i={1} className="rule border-t-2 border-k-noir pt-5 lg:col-span-3 lg:col-start-10 lg:mb-3">
+          <Reveal i={1} className="lg:col-span-3 lg:col-start-10 lg:mb-3">
             <p className="font-serif text-[1.5rem] italic leading-snug md:text-[1.75rem]">
               <T
                 en="Curating exceptional coffee, wellness and lifestyle experiences."
@@ -217,7 +215,7 @@ export default function HomePage() {
         </div>
 
         <div className="mt-24 md:mt-32">
-          <div className="rule mb-8 flex flex-wrap items-end justify-between gap-6 border-b pb-6 md:mb-10">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-6 md:mb-10">
             <div>
               <h2 id="shelf-title" className="font-serif text-d2 font-medium italic">
                 <T en="The shelf." es="La estantería." />
@@ -340,7 +338,7 @@ export default function HomePage() {
       >
         <div className="grid items-end gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="relative -mx-5 -mt-16 sm:mx-0 bleed-left lg:col-span-7 lg:-mt-28">
-            <div className="photo-zoom relative aspect-[4/3] overflow-hidden border-y border-k-noir lg:border-r">
+            <div className="photo-zoom relative aspect-[4/3] overflow-hidden">
               <Image
                 src={photos.mocadaEntrance.src}
                 alt={photos.mocadaEntrance.alt}
@@ -395,7 +393,7 @@ export default function HomePage() {
         </Reveal>
         <Reveal
           i={1}
-          className="rule mt-12 flex flex-col items-start gap-4 border-t pt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8"
+          className="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8"
         >
           <Action href={site.whatsapp} variant="solid" arrow>
             <T t={copy.common.whatsapp} />

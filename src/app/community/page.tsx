@@ -62,7 +62,7 @@ export default function CommunityPage() {
             <div className="bleed-right lg:-mt-8 lg:translate-y-24">
               <Reveal variant="mask">
                 <figure>
-                  <div className="photo-zoom relative aspect-[4/5] overflow-hidden border-y border-k-noir lg:aspect-[3/4] lg:border-l">
+                  <div className="photo-zoom relative aspect-[4/5] overflow-hidden lg:aspect-[3/4]">
                     <Image
                       src={photos.toastStreet.src}
                       alt={photos.toastStreet.alt}
@@ -100,8 +100,6 @@ export default function CommunityPage() {
 
           <Reveal className="order-2 lg:order-1 lg:col-span-7">
             <article className="tone-pureza relative px-5 py-8 md:px-12 md:py-12" aria-labelledby="menu-title">
-              <span aria-hidden="true" className="rule pointer-events-none absolute inset-2 border md:inset-3" />
-              <span aria-hidden="true" className="pointer-events-none absolute inset-4 border border-k-noir md:inset-5" />
               <div className="relative">
                 <p className="label-row flex justify-between gap-4">
                   <span>Kreore Woman · Café Brunch</span>
@@ -116,7 +114,7 @@ export default function CommunityPage() {
                   <T en="The brunch series at the heart of Kreore Woman." es="La serie de brunches en el corazón de Kreore Woman." />
                 </p>
 
-                <dl className="mt-10 border-t-2 border-k-noir">
+                <dl className="mt-10">
                   <div className="rule grid gap-2 border-b py-5 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
                     <dt className="label-row pt-2">
                       <T en="Coffee" es="Café" />
@@ -199,7 +197,7 @@ export default function CommunityPage() {
               </p>
               <dl className="mt-4">
                 {picnic.map((row) => (
-                  <div key={row.k.en} className="rule grid grid-cols-[6.5rem_1fr] gap-4 border-b py-4 last:border-b-0">
+                  <div key={row.k.en} className="grid grid-cols-[6.5rem_1fr] gap-4 py-3">
                     <dt className="label-row pt-1">
                       <T t={row.k} />
                     </dt>

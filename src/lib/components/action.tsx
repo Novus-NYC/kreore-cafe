@@ -24,7 +24,7 @@ type ActionProps = {
 /** Sharp-cornered CTA. External links open in a new tab with rel="noreferrer". */
 export function Action({ href, children, variant = "solid", className = "", arrow = false, ...rest }: ActionProps) {
   const external = /^https?:\/\//.test(href)
-  const cls = `inline-flex min-h-[48px] items-center gap-3 rounded-[2px] px-6 text-[0.98rem] font-bold tracking-[0.01em] transition-colors duration-200 ${variants[variant]} ${className}`
+  const cls = `inline-flex min-h-[48px] items-center gap-3 rounded-[2px] px-6 text-[1rem] font-bold tracking-[0.01em] transition-colors duration-200 ${variants[variant]} ${className}`
   const content = (
     <>
       <span>{children}</span>

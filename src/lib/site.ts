@@ -34,6 +34,3 @@ export const nav: NavItem[] = [
   { href: "/story", label: { en: "Story", es: "Historia" } },
   { href: "/contact", label: { en: "Contact", es: "Contacto" } },
 ]
-
-/** Routes whose first label is light (pureza or bourbon), so the transparent navbar uses noir ink. */
-export const lightTopRoutes = ["/services", "/community", "/contact"]

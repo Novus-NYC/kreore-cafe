@@ -5,7 +5,8 @@ import sombreros from "../../public/images/sombreros.jpg"
 import beans from "../../public/images/beans.jpg"
 import sachetsShelf from "../../public/images/sachets-shelf.jpg"
 import toastStreet from "../../public/images/toast-street.jpg"
-import mocadaEntrance from "../../public/images/mocada-entrance.jpg"
+import mocadaCrop from "../../public/images/mocada-crop.jpg"
+import kreoreSachet from "../../public/images/kreore-sachet.jpg"
 
 export type Photo = {
   src: StaticImageData
@@ -45,9 +46,17 @@ export const photos = {
     alt: "Friends toasting with colorful mugs on a street, a Kreore drip sachet in the foreground",
     caption: { en: "Kreore pop-up", es: "Pop-up Kreore" },
   },
+  // A tight crop of the bottom of toast-street.jpg: the Kreore drip sachet held up at a pop-up.
+  kreoreSachet: {
+    src: kreoreSachet,
+    alt: "A hand holding a white Kreore Colombian specialty drip coffee sachet at a street pop-up",
+    caption: { en: "Kreore drip coffee", es: "Café de filtro Kreore" },
+  },
+  // A tight 4:5 crop of mocada-entrance.jpg (her, the case and the MoCADA lettering on the glass).
+  // It drops the building facade and the Spanish caption baked into the original's upper third.
   mocadaEntrance: {
-    src: mocadaEntrance,
-    alt: "A Kreore team member with a rolling case outside the MoCADA entrance in Brooklyn",
+    src: mocadaCrop,
+    alt: "A Kreore team member with a rolling case, pointing up at the MoCADA entrance in Brooklyn",
     caption: { en: "MoCADA, Brooklyn", es: "MoCADA, Brooklyn" },
   },
 } satisfies Record<string, Photo>

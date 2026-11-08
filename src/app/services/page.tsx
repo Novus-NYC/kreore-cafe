@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { Label, LabelRow } from "@/lib/components/label"
+import Image from "next/image"
+import { Label } from "@/lib/components/label"
 import { Frame } from "@/lib/components/frame"
 import { Reveal } from "@/lib/components/reveal"
 import { Action } from "@/lib/components/action"
@@ -18,20 +19,22 @@ export const metadata: Metadata = {
 
 const [office, catering, events, popups] = services
 
-const lead = "max-w-[36ch] font-serif text-[1.55rem] leading-snug md:text-[1.8rem]"
+const lead = "max-w-[36ch] font-serif text-[1.6rem] leading-snug md:text-[1.85rem]"
 
 export default function ServicesPage() {
   return (
     <>
-      {/* Header: pureza, type-led, with an index of the four services. */}
+      {/* Hero: light, a toast with Kreore mugs bleeding off the right edge, the four services as an index. */}
       <Label
-        tone="pureza"
+        tone="milk"
         first
-        fields={[<T key="s" en="Service · Coffee" es="Servicio · Café" />, <T key="d" t={copy.nav.destination} />]}
+        pad="none"
+        className="z-10"
+        fields={[<T key="s" en="Services · Coffee" es="Servicios · Café" />, <T key="d" t={copy.nav.destination} />]}
       >
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <h1 className="font-serif text-motto font-medium">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7 lg:row-start-1">
+            <h1 className="font-serif text-[clamp(3.4rem,6.8vw,7.25rem)] font-medium leading-[0.9] tracking-[-0.02em]">
               <T
                 en={
                   <>
@@ -45,23 +48,51 @@ export default function ServicesPage() {
                 }
               />
             </h1>
-          </div>
-          <nav aria-labelledby="services-index" className="self-end lg:col-span-4 lg:col-start-9 xl:col-span-3 xl:col-start-10">
-            <p id="services-index" className="t-muted mb-4">
+            <p className="mt-6 max-w-[44ch] text-[1.2rem] leading-snug md:text-[1.35rem]">
               <T
                 en="Office coffee supply, catering, event hosting and pop-up experiences, poured with Colombian specialty coffee."
                 es="Café para oficinas, catering, eventos y experiencias pop-up, con café colombiano de especialidad."
               />
             </p>
-            <ul>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+              <Action href={site.whatsapp} variant="solid" arrow>
+                <T en="Book coffee service" es="Reserva el servicio de café" />
+              </Action>
+              <Action href={site.hostForm} variant="text">
+                <T t={copy.common.hostForm} />
+              </Action>
+            </div>
+          </div>
+          <div className="relative -mx-5 sm:mx-0 lg:col-span-5 lg:row-span-2 lg:row-start-1">
+            <div className="bleed-right lg:-mb-20">
+              <Reveal variant="mask">
+                <div className="photo-zoom relative aspect-[4/3] overflow-hidden lg:aspect-[4/5]">
+                  <Image
+                    src={photos.sachetsShelf.src}
+                    alt={photos.sachetsShelf.alt}
+                    fill
+                    preload
+                    sizes="(min-width: 1024px) 44vw, 100vw"
+                    className="photo-grade object-cover"
+                    style={{ objectPosition: "30% 70%" }}
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+          <nav aria-labelledby="services-index" className="pb-14 lg:col-span-7 lg:row-start-2 lg:pb-20">
+            <p id="services-index" className="sr-only">
+              <T en="The four services" es="Los cuatro servicios" />
+            </p>
+            <ul className="grid gap-x-8 sm:grid-cols-2">
               {services.map((s) => (
                 <li key={s.slug}>
                   <a
                     href={`#${s.slug}`}
-                    className="rule group flex min-h-[52px] items-center justify-between border-b font-serif text-[1.6rem] transition-colors hover:bg-k-noir hover:px-3 hover:text-k-pureza"
+                    className="rule group flex min-h-[52px] items-center justify-between border-b font-serif text-[1.55rem] transition-colors hover:text-k-rose"
                   >
                     <T en={s.en} es={s.es} />
-                    <span aria-hidden="true" className="font-sans text-base">
+                    <span aria-hidden="true" className="font-sans text-base transition-transform group-hover:translate-y-0.5">
                       ↓
                     </span>
                   </a>
@@ -72,31 +103,27 @@ export default function ServicesPage() {
         </div>
       </Label>
 
-      {/* Office: noir, big photo bleeding off the left edge, text right. */}
-      <Label
-        tone="noir"
-        id={office.slug}
-        fields={[
-          <T key="s" en="Service · Offices" es="Servicio · Oficinas" />,
-          <T key="f" en="Format · Sachets and coffee" es="Formato · Sobres y café" />,
-        ]}
-      >
-        <div className="grid items-center gap-12 lg:grid-cols-12">
+      {/* Office: pureza, sachets photo bleeding off the left edge, text right. */}
+      <Label tone="pureza" id={office.slug} aria-labelledby="office-title" innerClassName="lg:!pt-32">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="bleed-left lg:col-span-6">
             <Frame
-              photo={photos.sachetsShelf}
-              ratio="aspect-[4/5]"
+              photo={photos.kreoreSachet}
+              ratio="aspect-[4/3] lg:aspect-[5/4]"
               sizes="(min-width: 1024px) 48vw, 100vw"
-              objectPosition="50% 70%"
+              objectPosition="50% 50%"
               note="Kreore drip"
               className="lg:[&_figcaption]:pl-10"
             />
           </Reveal>
           <Reveal i={1} className="lg:col-span-5 lg:col-start-8">
-            <h2 className="font-serif text-d1 font-medium">
+            <p className="label-row">
+              <T en="Format · Sachets and coffee" es="Formato · Sobres y café" />
+            </p>
+            <h2 id="office-title" className="mt-4 font-serif text-d2 font-medium">
               <T en={office.en} es={office.es} />
             </h2>
-            <p className={`mt-8 ${lead}`}>
+            <p className={`mt-6 ${lead}`}>
               <T en={office.lineEn} es={office.lineEs} />
             </p>
             <p className="t-muted mt-4 max-w-[52ch]">
@@ -105,7 +132,7 @@ export default function ServicesPage() {
                 es="Los sobres Kreore son individuales: una taza de café colombiano de especialidad lista en cualquier escritorio."
               />
             </p>
-            <Action href={site.whatsapp} variant="solid-light" arrow className="mt-8">
+            <Action href={site.whatsapp} variant="solid" arrow className="mt-8">
               <T en="Ask about office coffee" es="Pregunta por el café para oficinas" />
             </Action>
           </Reveal>
@@ -113,25 +140,21 @@ export default function ServicesPage() {
       </Label>
 
       {/* Catering: bourbon, type-led, a huge word with the text offset right. */}
-      <Label
-        tone="bourbon"
-        id={catering.slug}
-        fields={[
-          <T key="s" en="Service · Catering" es="Servicio · Catering" />,
-          <T key="m" en="Meetings · Celebrations" es="Reuniones · Celebraciones" />,
-        ]}
-      >
-        <Reveal>
-          <h2 className="font-serif text-[clamp(5rem,17vw,16rem)] font-medium italic leading-[0.8] tracking-[-0.03em]">
-            Catering
-          </h2>
-        </Reveal>
-        <div className="mt-10 grid lg:grid-cols-12">
-          <Reveal i={1} className="lg:col-span-5 lg:col-start-7">
+      <Label tone="bourbon" id={catering.slug} aria-labelledby="catering-title">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+          <Reveal className="lg:col-span-7">
+            <h2
+              id="catering-title"
+              className="font-serif text-[clamp(4.5rem,14vw,13rem)] font-medium italic leading-[0.8] tracking-[-0.03em]"
+            >
+              Catering
+            </h2>
+          </Reveal>
+          <Reveal i={1} className="lg:col-span-5">
             <p className={lead}>
               <T en={catering.lineEn} es={catering.lineEs} />
             </p>
-            <p className="t-muted mt-4 max-w-[52ch]">
+            <p className="mt-4 max-w-[52ch]">
               <T
                 en="Tell us the date, the place and what you are celebrating, and we will shape the coffee service around it."
                 es="Cuéntanos la fecha, el lugar y qué celebras, y armamos el servicio de café a tu medida."
@@ -144,38 +167,27 @@ export default function ServicesPage() {
         </div>
       </Label>
 
-      {/* Events: gesha, split with a ruled field sheet. */}
-      <Label
-        tone="gesha"
-        id={events.slug}
-        fields={[
-          <T key="s" en="Service · Events" es="Servicio · Eventos" />,
-          <T key="h" en="Host · Kreore" es="Anfitriona · Kreore" />,
-        ]}
-      >
-        <div className="grid gap-12 lg:grid-cols-12">
+      {/* Events: milk, split with a paper field sheet. */}
+      <Label tone="milk" id={events.slug} aria-labelledby="events-title">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-6">
-            <h2 className="font-serif text-d1 font-medium">
+            <h2 id="events-title" className="font-serif text-d1 font-medium">
               <T en={events.en} es={events.es} />
             </h2>
-            <p className={`mt-8 ${lead}`}>
+            <p className={`mt-6 ${lead}`}>
               <T en={events.lineEn} es={events.lineEs} />
             </p>
           </Reveal>
-          <Reveal i={1} className="lg:col-span-5 lg:col-start-8 lg:mt-24">
-            <div className="tone-pureza relative p-6 md:p-8">
-              <LabelRow
-                left={<T en="To begin" es="Para empezar" />}
-                right={<T en="Form" es="Formulario" />}
-                className="relative"
-              />
-              <p className="relative mt-6 font-serif text-[1.8rem] leading-snug">
+          <Reveal i={1} className="lg:col-span-5 lg:col-start-8">
+            <div className="tone-pureza p-6 md:p-9">
+              <p className="wordmark text-[1.05rem] leading-none">{site.wordmark}</p>
+              <p className="mt-5 font-serif text-[1.75rem] leading-snug">
                 <T
                   en="Share the date, the place and who you want to bring together."
                   es="Cuéntanos la fecha, el lugar y a quién quieres reunir."
                 />
               </p>
-              <dl className="relative mt-6">
+              <dl className="mt-5">
                 {[
                   { en: "Date", es: "Fecha" },
                   { en: "Place", es: "Lugar" },
@@ -189,7 +201,7 @@ export default function ServicesPage() {
                   </div>
                 ))}
               </dl>
-              <Action href={site.hostForm} variant="solid" arrow className="relative mt-8">
+              <Action href={site.hostForm} variant="solid" arrow className="mt-8">
                 <T t={copy.common.hostForm} />
               </Action>
             </div>
@@ -197,14 +209,14 @@ export default function ServicesPage() {
         </div>
       </Label>
 
-      {/* Pop-ups: pureza, text left, tall photo right rising into the band above. */}
-      <Label tone="pureza" id={popups.slug} fields={[<T key="s" en="Service · Pop-ups" es="Servicio · Pop-ups" />, null]}>
-        <div className="grid gap-12 lg:grid-cols-12">
-          <Reveal className="flex flex-col justify-center lg:col-span-6">
-            <h2 className="font-serif text-d1 font-medium italic">
+      {/* Pop-ups: the page's one noir band. Medium MoCADA crop, text left. */}
+      <Label tone="noir" id={popups.slug} aria-labelledby="popups-title">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+          <Reveal className="lg:col-span-6">
+            <h2 id="popups-title" className="font-serif text-d1 font-medium italic">
               <T en={popups.en} es={popups.es} />
             </h2>
-            <p className={`mt-8 ${lead}`}>
+            <p className={`mt-6 ${lead}`}>
               <T en={popups.lineEn} es={popups.lineEs} />
             </p>
             <p className="t-muted mt-4 max-w-[52ch]">
@@ -213,36 +225,25 @@ export default function ServicesPage() {
                 es="Anunciamos dónde estaremos en Instagram."
               />
             </p>
-            <div className="mt-8">
-              <Action href={site.instagram} variant="solid" arrow>
-                <T en="See where we pop up next" es="Mira dónde estaremos" />
-              </Action>
-            </div>
+            <Action href={site.instagram} variant="solid-light" arrow className="mt-8">
+              <T en="See where we pop up next" es="Mira dónde estaremos" />
+            </Action>
           </Reveal>
-          <Reveal i={1} className="lg:col-span-5 lg:col-start-8 lg:-mt-48">
-            <Frame
-              photo={photos.toastStreet}
-              ratio="aspect-[3/4]"
-              sizes="(min-width: 1024px) 38vw, 100vw"
-              objectPosition="50% 40%"
-              note={<T en="A toast" es="Brindis" />}
-            />
+          <Reveal i={1} className="ml-auto w-[72%] max-w-[22rem] lg:col-span-4 lg:col-start-9 lg:w-full lg:max-w-none">
+            <Frame photo={photos.mocadaEntrance} ratio="aspect-[4/5]" sizes="(min-width: 1024px) 28vw, 72vw" />
           </Reveal>
         </div>
       </Label>
 
       {/* Closing CTA: pacamara. */}
-      <Label
-        tone="pacamara"
-        fields={[<T key="b" en="Bookings" es="Reservas" />, <T key="w" en="WhatsApp · Form" es="WhatsApp · Formulario" />]}
-      >
-        <div className="grid gap-10 lg:grid-cols-12">
+      <Label tone="pacamara" aria-labelledby="services-cta">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
-            <h2 className="font-serif text-d1 font-medium">
+            <h2 id="services-cta" className="font-serif text-d1 font-medium">
               <T en="Tell us what you have in mind." es="Cuéntanos tu idea." />
             </h2>
           </Reveal>
-          <Reveal i={1} className="flex flex-col items-start gap-4 lg:col-span-4 lg:col-start-9 lg:justify-end">
+          <Reveal i={1} className="flex flex-col items-start gap-3 lg:col-span-4 lg:col-start-9">
             <Action href={site.hostForm} variant="solid" arrow>
               <T t={copy.common.hostForm} />
             </Action>

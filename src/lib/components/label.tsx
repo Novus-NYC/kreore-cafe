@@ -18,15 +18,22 @@ type LabelProps = {
   "aria-labelledby"?: string
 }
 
+// Deliberate, not cavernous: 64px / 96px by default, 56px / 72px when tight.
 const bottomPad: Record<Pad, string> = {
-  default: "pb-20 md:pb-28",
-  tight: "pb-12 md:pb-16",
+  default: "pb-16 md:pb-24",
+  tight: "pb-14 md:pb-[4.5rem]",
   none: "pb-0",
 }
 
+const topPad: Record<Pad, string> = {
+  default: "pt-16 md:pt-24",
+  tight: "pt-14 md:pt-[4.5rem]",
+  none: "pt-16 md:pt-24",
+}
+
 /**
- * Full-bleed section built like a specialty coffee label:
- * a varietal color, a thin rule frame inset from the edges and a header row.
+ * Full-bleed section built like a specialty coffee label: one color and an optional
+ * header row of real fields (origin, kind). Light tones (milk, pureza) carry most pages.
  */
 export function Label({
   tone,
@@ -42,9 +49,9 @@ export function Label({
   return (
     <section id={id} className={`tone-${tone} relative ${className}`} {...rest}>
       <div
-        className={`wrap relative ${first ? "pt-24 md:pt-28" : "pt-10 md:pt-14"} ${bottomPad[pad]} ${innerClassName}`}
+        className={`wrap relative ${first ? "pt-24 md:pt-28" : topPad[pad]} ${bottomPad[pad]} ${innerClassName}`}
       >
-        {fields ? <LabelRow left={fields[0]} right={fields[1]} className="mb-10 md:mb-14" /> : null}
+        {fields ? <LabelRow left={fields[0]} right={fields[1]} className="mb-8 md:mb-10" /> : null}
         {children}
       </div>
     </section>

@@ -10,7 +10,7 @@
 
   body {
     margin: 0;
-    background: #f5efe6;
+    background: #fbf8f3;
     color: #16120f;
     font-family: var(--font-sans), system-ui, sans-serif;
     font-size: 1.0625rem;
@@ -49,7 +49,15 @@
     background-color: #f5efe6;
     color: #16120f;
     --muted: #5a3b2a;
-    --rule: rgba(22, 18, 15, 0.18);
+    --rule: rgba(22, 18, 15, 0.16);
+    --accent: #5a3b2a;
+  }
+  /* Milk: the lighter canvas that alternates with pureza, like the white of the bag. */
+  .tone-milk {
+    background-color: #fbf8f3;
+    color: #16120f;
+    --muted: #5a3b2a;
+    --rule: rgba(22, 18, 15, 0.14);
     --accent: #5a3b2a;
   }
   .tone-bourbon {
@@ -89,10 +97,10 @@
 
   .label-row {
     font-family: var(--font-sans), system-ui, sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     line-height: 1.4;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     font-weight: 700;
     color: var(--accent, currentColor);
   }
@@ -105,8 +113,9 @@
     border-color: var(--rule, rgba(22, 18, 15, 0.18));
   }
 
+  /* One shared treatment for every photo: warm, slightly brightened, sunlit. */
   .photo-grade {
-    filter: saturate(0.9) contrast(1.04) sepia(0.08);
+    filter: brightness(1.05) saturate(0.92) contrast(1.02) sepia(0.07);
   }
 
   .wordmark {
@@ -141,13 +150,15 @@
   transform: none;
 }
 
-/* Signature moment: the hero photo rises out of the label from the bottom. */
-.js .reveal-mask {
+/* Signature moment: the hero photo rises out of the label from the bottom.
+   The clip sits on the child, never on the observed element itself: an element clipped to
+   nothing never reports as intersecting, so it would never be revealed (or lazy-load). */
+.js .reveal-mask > * {
   clip-path: inset(100% 0 0 0);
   transition: clip-path 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
   transition-delay: calc(var(--i, 0) * 60ms);
 }
-.js .reveal-mask.is-in {
+.js .reveal-mask.is-in > * {
   clip-path: inset(0 0 0 0);
 }
 
@@ -176,7 +187,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .js .reveal,
-  .js .reveal-mask {
+  .js .reveal-mask > * {
     opacity: 1;
     transform: none;
     clip-path: none;

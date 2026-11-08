@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
-import { lightTopRoutes, nav, site } from "@/lib/site"
+import { nav, site } from "@/lib/site"
 import { useLang } from "@/lib/i18n"
 import { copy } from "@/lib/copy"
 import LangToggle from "./lang-toggle"
@@ -64,14 +64,11 @@ export default function Navbar() {
     }
   }, [open, close])
 
-  const lightTop = lightTopRoutes.includes(pathname)
-  const solid = scrolled
-  const ink = solid || lightTop ? "text-k-noir" : "text-k-pureza"
-  const surface = solid ? "bg-k-pureza border-k-line" : "bg-transparent border-transparent"
-  const cta =
-    solid || lightTop
-      ? "bg-k-noir text-k-pureza hover:bg-k-bean"
-      : "bg-k-pureza text-k-noir hover:bg-k-bourbon"
+  // Every page opens on a light label, so the ink is always noir. Once content scrolls
+  // beneath, the bar takes the milk canvas and a hairline so it never sits on a photo unread.
+  const surface = scrolled ? "bg-k-milk border-k-line" : "bg-transparent border-transparent"
+  const ink = "text-k-noir"
+  const cta = "bg-k-noir text-k-pureza hover:bg-k-bean"
 
   return (
     <header
@@ -79,7 +76,7 @@ export default function Navbar() {
     >
       <a
         href="#content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:bg-k-pureza focus:px-4 focus:py-2 focus:text-k-noir"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:bg-k-milk focus:px-4 focus:py-2 focus:text-k-noir"
       >
         {t(copy.nav.skip)}
       </a>
@@ -143,7 +140,7 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label={t(copy.nav.menu)}
-          className="tone-noir fixed inset-0 z-[60] flex flex-col overflow-y-auto lg:hidden"
+          className="tone-milk fixed inset-0 z-[60] flex flex-col overflow-y-auto lg:hidden"
         >
           <div className="wrap relative flex h-16 items-center justify-between">
             <span className="wordmark text-[1.35rem] leading-none">{site.wordmark}</span>
@@ -158,7 +155,7 @@ export default function Navbar() {
           <div className="wrap relative flex flex-1 flex-col pb-10 pt-6">
             <div className="label-row flex items-center justify-between">
               <span>{t(copy.nav.origin)}</span>
-              <LangToggle className="-mr-3 text-k-pureza" />
+              <LangToggle className="-mr-3 text-k-noir" />
             </div>
             <nav aria-label={t(copy.nav.menu)} className="mt-6">
               <ul>
@@ -185,7 +182,7 @@ export default function Navbar() {
               href={site.whatsapp}
               target="_blank"
               rel="noreferrer"
-              className="mt-auto inline-flex min-h-[52px] items-center justify-center rounded-[2px] bg-k-pureza px-6 font-bold text-k-noir"
+              className="mt-auto inline-flex min-h-[52px] items-center justify-center rounded-[2px] bg-k-noir px-6 font-bold text-k-pureza"
             >
               {t(copy.nav.ctaLong)}
             </a>

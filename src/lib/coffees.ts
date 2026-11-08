@@ -1,4 +1,4 @@
-export type Tone = "noir" | "pureza" | "bourbon" | "gesha" | "pacamara"
+export type Tone = "noir" | "pureza" | "milk" | "bourbon" | "gesha" | "pacamara"
 
 export type Coffee = {
   slug: string
@@ -14,6 +14,7 @@ export type Coffee = {
 
 // Descriptions describe the variety in general, never a specific lot.
 // Pureza and Noir 82 details are unknown: owner to supply notes.
+// Order keeps two saturated label colors from ever sitting side by side (Pureza between Bourbon and Gesha).
 export const coffees: Coffee[] = [
   {
     slug: "pink-bourbon",
@@ -24,20 +25,20 @@ export const coffees: Coffee[] = [
     en: "A Colombian-grown variety prized in specialty coffee.",
   },
   {
-    slug: "gesha",
-    name: "Gesha",
-    tone: "gesha",
-    kind: "variety",
-    es: "Una variedad célebre en el café de especialidad por sus tazas florales, casi como un té.",
-    en: "A celebrated variety known in specialty coffee for its floral, tea-like cups.",
-  },
-  {
     slug: "pureza",
     name: "Pureza",
     tone: "pureza",
     kind: "line",
     es: "Pregúntale a Viviana por esta línea.",
     en: "Ask Viviana about this line.",
+  },
+  {
+    slug: "gesha",
+    name: "Gesha",
+    tone: "gesha",
+    kind: "variety",
+    es: "Una variedad célebre en el café de especialidad por sus tazas florales, casi como un té.",
+    en: "A celebrated variety known in specialty coffee for its floral, tea-like cups.",
   },
   {
     slug: "noir-82",

@@ -2,7 +2,6 @@ import Image from "next/image"
 import type { ReactNode } from "react"
 import type { Photo } from "@/lib/images"
 import { T } from "@/lib/i18n"
-import { copy } from "@/lib/copy"
 
 type FrameProps = {
   photo: Photo
@@ -19,7 +18,7 @@ type FrameProps = {
   bare?: boolean
 }
 
-/** Photo in a 1px rule frame with the shared warm grade and a label-style caption row. */
+/** Photo with the shared sunlit grade, a fixed rectangular crop and a short caption row. */
 export function Frame({
   photo,
   ratio = "aspect-[4/5]",
@@ -48,7 +47,7 @@ export function Frame({
       {bare ? null : (
         <figcaption className="label-row mt-3 flex justify-between gap-4">
           <span>
-            <T t={copy.common.photo} /> · <T t={photo.caption} />
+            <T t={photo.caption} />
           </span>
           {note ? <span>{note}</span> : null}
         </figcaption>

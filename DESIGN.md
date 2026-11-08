@@ -1,5 +1,52 @@
 # Kreore Café: design spec
 
+> **Revision 3 (2026-11-07): "Sunlit label". Light canvas, founder up front, bigger type, every hero anchored by a photo.**
+> A design review found the site reading as a dark cocktail bar: noir and khaki-gold full-bleed bands, five saturated colors in sequence, tiny caps labels and muted body copy, the founder missing from home, weak phone photos shown huge, and type-only heroes with empty space. Kreore's real Instagram is bright, white, blush and airy. What is true now (supersedes sections 4, 5 and the section lists of Revision 2 where they conflict):
+>
+> **Palette and roles.**
+> | Token | Hex | Role now |
+> |---|---|---|
+> | `milk` (new) | `#FBF8F3` | Main canvas: every hero, alternates with pureza. `tone-milk`. Body background. Navbar surface once scrolled, mobile menu sheet. |
+> | `pureza` | `#F5EFE6` | Second canvas, alternates with milk. Paper cards (event sheet, picnic ticket). |
+> | `bourbon` | `#EBC1CB` | Signature color: community (home band, community hero, invitation card), story founder band, contact host card, coffees catalog band, Pink Bourbon label. |
+> | `rose` (new) | `#9C3D57` | Deep rose: the bourbon family's ink. "ORÉ" on the story hero, the English motto gloss, the "=" in the dictionary entries, link hover on light, the wax seal. Passes AA on milk and pureza (about 5.6:1). |
+> | `pacamara` | `#F1D35B` | Closing CTA band (once per page) and the Pacamara label only. Hover fill for the email row on contact. |
+> | `gesha` | `#B8914A` | Background only on the Gesha label (home shelf card, coffees band). Elsewhere an accent on noir (footer label rows). Never text on cream (2.5:1, fails). |
+> | `noir` | `#16120F` | Ink everywhere. Background only on: the footer, the Noir 82 label, and at most one band or element per page (services: pop-ups band; community: picnic band; contact: work-with-us card; home, coffees, story: none). |
+> | `bean` | `#5A3B2A` | Muted text and small label rows on light (8.7:1 on pureza). |
+>
+> Never two saturated bands adjacent. To keep that true on the coffees page, `coffees.ts` is ordered Pink Bourbon, Pureza, Gesha, Noir 82, Pacamara, Sachets (the shelf, marquee and bands all follow it).
+>
+> **Navbar.** Every page opens on a light label, so the navbar ink is always noir (the `lightTopRoutes` list is gone). Transparent at the top, milk with a hairline after 24px of scroll. Mobile sheet is milk with a noir CTA.
+>
+> **Type.** Body stays 17px; muted copy is bean, never translucent. `.label-row` is 13px (0.8125rem), tracking 0.16em. Label rows that said nothing ("In her words", "Service · Coffee / New York", "Bookings / Events · Offices · Hotels", "Channels / Tap to open", "Catalog / WhatsApp" and similar) are deleted; rows that carry real information stay (Origin · Colombia / Destination · New York, Founder · Viviana Durán, Type / Origin / Order fields on each coffee).
+>
+> **Spacing.** `Label` padding is 64px mobile / 96px desktop by default, 56px / 72px when `tight`, top and bottom symmetric. Field rows sit 32px / 40px above content.
+>
+> **Photos.** One shared grade, `.photo-grade { filter: brightness(1.05) saturate(.92) contrast(1.02) sepia(.07) }`: warm and sunlit. Rectangular crops only. Two derived crops were added as files so the weak phone photos are shown tight, never raw: `mocada-crop.jpg` (880x1100, her and the case with the MoCADA lettering on the glass; no facade top, no baked-in caption) shown at medium size only, and `kreore-sachet.jpg` (1012x740, the Kreore drip sachet held up at the pop-up, from the bottom of `toast-street.jpg`). `Frame` captions are just the caption text (no "Photo ·" prefix).
+>
+> **Heroes (all light, all with a real photo, headline + short line + primary action above the fold at 1440x900 and 375x812).**
+> - Home: milk. Motto huge in noir, gloss in rose, farm photo bleeding right and hanging over the marquee, white bag label on the photo.
+> - Coffees: milk. "The coffees." with the beans photo (square) bleeding right and dropping into the Pink Bourbon band.
+> - Services: milk. Headline, line, "Book coffee service" + host form; the toast photo bleeds right; the four-service index sits under the text on desktop and under the photo on mobile.
+> - Community: bourbon (kept). Toast photo bleeding right.
+> - Story: milk. KRE (noir) + ORÉ (rose) in the wordmark face, the two dictionary entries, the motto, "Follow Viviana on Instagram"; the coffee-field photo bleeds right and hangs into the bourbon band.
+> - Contact: milk. "Write to us.", WhatsApp primary, email secondary; the Kreore sachet crop bleeds right.
+> - 404: milk. "This page does not exist." with the beans photo.
+>
+> **Page sequences.**
+> - Home: milk hero → pureza marquee (names in noir italic, each led by a swatch of its label color) → milk founder moment (coffee-field photo, "Born between Colombia and New York City.", Viviana Durán founded Kreore, certified barista, link to /story) → pureza shelf → milk services → bourbon Kreore Woman → pureza Find us (medium MoCADA crop pulled up into the pink) → pacamara CTA → noir footer.
+> - Shelf cards read as real labels: small KREORE wordmark and kind at the top, the name large, a one-line description, Origin · Colombia and an arrow. Rows 7/5, 4/3/5, then Sachets as a full-width card with its photo. Pureza is a milk card on the pureza shelf. No row spans, so no empty voids.
+> - Coffees: milk hero → one band per coffee in its own color (wordmark, name, Type / Origin / Order fields, description, "Ask about [name]" button; Sachets carries its photo) → bourbon catalog band → footer.
+> - Services: milk hero → pureza office (sachets photo bleeding left) → bourbon catering → milk events (pureza field sheet) → noir pop-ups (medium MoCADA crop) → pacamara CTA.
+> - Community: bourbon hero → milk "What a gathering looks like" with the invitation: a blush card, centered italic *Historias y Conexiones*, the menu fields spaced without rules, and a static deep-rose wax seal with a K (`src/lib/components/wax-seal.tsx`, SVG, no motion) → noir band with a paper ticket for the past Petite Coffee Picnic → pureza recruiting (bourbon block, overlapping milk card) → pacamara CTA.
+> - Story: milk hero → bourbon founder band (statement + fact sheet) → milk canopy (full-bleed sombreros crop with a milk label over its edge) → pacamara CTA.
+> - Contact: milk hero → pureza channels (huge noir serif rows, hairline separators, hover fills bourbon / pacamara / bourbon) → milk host card (bourbon) + work-with-us card (the page's one noir element) → pureza MoCADA with the medium crop.
+>
+> **Motion fix.** The mask reveal now clips the child (`.reveal-mask > *`), not the observed element. Clipping the observed element to nothing meant the IntersectionObserver never fired, so mask-revealed photos (hero photos included) stayed hidden and never lazy-loaded for real visitors; the audit's forced `is-in` had masked this. Reduced motion still shows everything immediately.
+>
+> **Needs client confirmation.** MoCADA as a current location (code comments kept). Whether the woman in `coffee-field.jpg` is Viviana: the copy beside it names her as founder, but the photo itself is not captioned or alt-texted with her name until she confirms. Spanish written for new lines in this pass (founder line on home, gathering description, 404 line, "Book coffee service", "Ask about [coffee]") needs her read.
+
 > **Revision 2 (2026-11-07): English default, EN / ES toggle, English routes, design pass.**
 > The client asked for English and Spanish "like the other website" (the My Lash Girl sister site). Sections below marked *(superseded)* were the first build. What is true now:
 >

@@ -86,13 +86,13 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <p className="t-muted mt-4 text-[0.95rem]">
+            <p className="t-muted mt-4">
               <T t={copy.common.replyBoth} />
             </p>
           </div>
         </div>
 
-        <div className="rule mt-14 flex flex-col gap-3 border-t pt-5 text-[0.9rem] sm:flex-row sm:items-center sm:justify-between">
+        <div className="rule mt-14 flex flex-col gap-3 border-t pt-5 text-[1rem] sm:flex-row sm:items-center sm:justify-between">
           <p className="t-muted">
             © {year} {site.name}. <T en="Woman-owned, New York." es="Empresa de una mujer, Nueva York." />
           </p>

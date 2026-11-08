@@ -8,7 +8,7 @@ The site is built as a set of coffee bag labels: each section is a full-bleed la
 
 | Route | Content |
 |---|---|
-| `/` | Hero motto, linktree line, varietal shelf, services, Kreore Woman, MoCADA band, booking CTA |
+| `/` | Hero motto, founder moment, varietal shelf, services, Kreore Woman, MoCADA band, booking CTA |
 | `/coffees` | The six coffee lines as colored label bands, WhatsApp catalog |
 | `/services` | Office coffee supply, catering, event hosting, pop-ups |
 | `/community` | Kreore Woman gatherings, past event, recruiting |
@@ -44,7 +44,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the production domain so Open Graph URLs are absol
 
 ## Facts to confirm with the owner before launch
 
-- [ ] **MoCADA**: is it a current, ongoing location? Days and hours? (shown on `/` and `/contact`)
+- [ ] **MoCADA**: is it a current, ongoing location? Days and hours? (shown on `/`, `/contact`, and the pop-ups photo on `/services`)
 - [ ] Which phone to publish: 718-600-1155 (used) or 646-623-9961
 - [ ] Coffee details: tasting notes, origin farms, bag sizes and prices. **Pureza** and **Noir 82** currently say "Ask Viviana about this line."
 - [ ] Sachets are described as drip sachets (based on packaging in her photo)

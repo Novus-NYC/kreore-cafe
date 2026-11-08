@@ -166,18 +166,19 @@ export default function StoryPage() {
         </div>
       </Label>
 
-      {/* Origin: the drying canopy as one big full-bleed crop on the light canvas, a label over its edge. */}
+      {/* Origin: Colombia's coffee region (stock, a real place) as one big full-bleed landscape on
+          the light canvas, a label over its edge. */}
       <section className="tone-milk relative">
         <Reveal variant="mask">
           <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] lg:aspect-[21/9]">
             <Image
-              src={photos.sombreros.src}
-              alt={photos.sombreros.alt}
+              src={photos.cocoraValley.src}
+              alt={photos.cocoraValley.alt}
               fill
               sizes="100vw"
               placeholder="blur"
               className="photo-grade object-cover"
-              style={{ objectPosition: "50% 88%" }}
+              style={{ objectPosition: "50% 55%" }}
             />
           </div>
         </Reveal>
@@ -191,8 +192,8 @@ export default function StoryPage() {
             </h2>
             <p className="t-muted mt-4">
               <T
-                en="Coffee beans resting under a bamboo drying canopy in Colombia."
-                es="Granos de café secándose bajo un techo de guadua en Colombia."
+                en="Kreore's coffee is Colombian. Above: Quindío, in the heart of Colombia's coffee region."
+                es="El café de Kreore es colombiano. Arriba: Quindío, en el corazón del Eje Cafetero."
               />
             </p>
           </Reveal>

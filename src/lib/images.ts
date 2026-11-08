@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image"
 import farmTour from "../../public/images/farm-tour.jpg"
 import coffeeField from "../../public/images/coffee-field.jpg"
-import sombreros from "../../public/images/sombreros.jpg"
+import cocoraValley from "../../public/images/cocora-valley.jpg"
 import beans from "../../public/images/beans.jpg"
 import sachetsShelf from "../../public/images/sachets-shelf.jpg"
 import toastStreet from "../../public/images/toast-street.jpg"
@@ -14,7 +14,8 @@ export type Photo = {
   caption: { en: string; es: string }
 }
 
-// All real Kreore photos from the owner's own site. Never name people in alt text.
+// Real Kreore photos from the owner's own site, plus two Unsplash License stock photos
+// (beans.jpg and cocora-valley.jpg, marked below). Never name people in alt text.
 export const photos = {
   farmTour: {
     src: farmTour,
@@ -26,14 +27,16 @@ export const photos = {
     alt: "A woman in a white hat walking past coffee plants on a hillside farm in Colombia",
     caption: { en: "Coffee farm, Colombia", es: "Cafetal en Colombia" },
   },
-  sombreros: {
-    src: sombreros,
-    alt: "Visitors in white sombreros under a bamboo drying canopy where coffee beans rest on raised beds",
-    caption: { en: "Drying the coffee", es: "Secado del café" },
+  // Stock (Unsplash License): unsplash.com/photos/gagbXVp6poM, Valle del Cocora, Quindío.
+  cocoraValley: {
+    src: cocoraValley,
+    alt: "Green hillsides and forest under low clouds and mist in Quindío, in Colombia's coffee region",
+    caption: { en: "Quindío, Colombia", es: "Quindío, Colombia" },
   },
+  // Stock (Unsplash License): unsplash.com/photos/lcfH0p6emhw
   beans: {
     src: beans,
-    alt: "Close-up of roasted coffee beans piled in a glass container",
+    alt: "Close-up of roasted coffee beans",
     caption: { en: "Roasted coffee", es: "Café tostado" },
   },
   sachetsShelf: {

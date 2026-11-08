@@ -4,6 +4,7 @@ import { Label } from "@/lib/components/label"
 import { Frame } from "@/lib/components/frame"
 import { Reveal } from "@/lib/components/reveal"
 import { Action } from "@/lib/components/action"
+import { HostForm } from "@/lib/components/host-form"
 import { T } from "@/lib/i18n"
 import { copy } from "@/lib/copy"
 import { photos } from "@/lib/images"
@@ -152,10 +153,11 @@ export default function ContactPage() {
         </p>
       </Label>
 
-      {/* Two more ways in: a big host card and a small team card that overlaps its edge. */}
-      <Label tone="milk" aria-labelledby="host-title">
+      {/* Two more ways in: the event form itself on a big bourbon card (it posts to the owner's
+          Google Form) and a small team card that overlaps its edge. */}
+      <Label tone="milk" id="host" aria-labelledby="host-title">
         <div className="grid lg:grid-cols-12">
-          <Reveal className="tone-bourbon relative p-6 pb-10 md:p-12 md:pb-16 lg:col-span-8">
+          <Reveal className="tone-bourbon relative -mx-5 p-5 pb-10 sm:mx-0 sm:p-6 md:p-12 md:pb-14 lg:col-span-8">
             <p className="label-row">
               <T en="Form · Events" es="Formulario · Eventos" />
             </p>
@@ -173,19 +175,19 @@ export default function ContactPage() {
                 }
               />
             </h2>
-            <p className="relative mt-6 max-w-[40ch] text-[1.1rem]">
+            <p className="relative mt-6 max-w-[44ch] text-[1.1rem]">
               <T
-                en="Share the date, the place and who you want to bring together."
-                es="Cuéntanos la fecha, el lugar y a quién quieres reunir."
+                en="We are based in New York City and currently host events in Queens, Brooklyn, Manhattan and New Jersey."
+                es="Estamos en Nueva York y por ahora llevamos tu evento a Queens, Brooklyn, Manhattan y Nueva Jersey."
               />
             </p>
-            <Action href={site.hostForm} variant="solid" arrow className="relative mt-8">
-              <T en="Open the host form" es="Abrir el formulario" />
-            </Action>
+            <div className="relative mt-10">
+              <HostForm />
+            </div>
           </Reveal>
           <Reveal
             i={1}
-            className="tone-noir relative z-10 -mt-6 ml-6 p-6 md:p-10 lg:col-span-4 lg:-ml-24 lg:mt-40 lg:self-start"
+            className="tone-noir relative z-10 -mt-6 ml-6 p-6 md:p-10 lg:col-span-4 lg:-ml-16 lg:mt-40 lg:self-start"
           >
             <p className="label-row">
               <T en="Team · WhatsApp" es="Equipo · WhatsApp" />

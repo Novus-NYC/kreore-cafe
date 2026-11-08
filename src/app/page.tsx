@@ -418,7 +418,7 @@ export default function HomePage() {
             <Action href={mailto} variant="text">
               {site.email}
             </Action>
-            <Action href={site.hostForm} variant="text" arrow>
+            <Action href={site.hostPage} variant="text" arrow>
               <T t={copy.common.hostForm} />
             </Action>
           </Reveal>

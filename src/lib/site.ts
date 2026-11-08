@@ -11,6 +11,8 @@ export const site = {
   whatsapp: "https://wa.me/17186001155",
   whatsappCatalog: "https://wa.me/c/17186001155",
   workWithUs: "https://wa.me/message/FO7BYIXPRHETJ1",
+  // The on-site event form (contact page). The Google Form stays as its secondary link.
+  hostPage: "/contact#host",
   hostForm:
     "https://docs.google.com/forms/d/e/1FAIpQLSdCKJnwvmv2hjYUzQWcHtfWV40f4sz2slgeIMDFs7bWPZ8ZGA/viewform",
   instagram: "https://www.instagram.com/kreorecafe/",

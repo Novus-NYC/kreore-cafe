@@ -58,7 +58,7 @@ export default function ServicesPage() {
               <Action href={site.whatsapp} variant="solid" arrow>
                 <T en="Book coffee service" es="Reserva el servicio de café" />
               </Action>
-              <Action href={site.hostForm} variant="text">
+              <Action href={site.hostPage} variant="text">
                 <T t={copy.common.hostForm} />
               </Action>
             </div>
@@ -201,7 +201,7 @@ export default function ServicesPage() {
                   </div>
                 ))}
               </dl>
-              <Action href={site.hostForm} variant="solid" arrow className="mt-8">
+              <Action href={site.hostPage} variant="solid" arrow className="mt-8">
                 <T t={copy.common.hostForm} />
               </Action>
             </div>
@@ -244,7 +244,7 @@ export default function ServicesPage() {
             </h2>
           </Reveal>
           <Reveal i={1} className="flex flex-col items-start gap-3 lg:col-span-4 lg:col-start-9">
-            <Action href={site.hostForm} variant="solid" arrow>
+            <Action href={site.hostPage} variant="solid" arrow>
               <T t={copy.common.hostForm} />
             </Action>
             <Action href={site.whatsapp} variant="outline">

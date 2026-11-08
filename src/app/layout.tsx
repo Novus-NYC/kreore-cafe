@@ -1,22 +1,66 @@
 import "./globals.css"
+import type { Metadata, Viewport } from "next"
+import { Cormorant_Garamond, Hanken_Grotesk } from "next/font/google"
 import Navbar from "@/lib/components/navbar"
 import Footer from "@/lib/components/footer"
+import { site } from "@/lib/site"
 
-export const metadata = {
-  title: "Business Name",
-  description: "Short description of the business."
+const serif = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+})
+
+const sans = Hanken_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+})
+
+const description =
+  "Colombian specialty coffee by Viviana Durán for New York events, offices, hotels and pop-ups. Creo porque oré."
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Kreore Café | Colombian specialty coffee in New York",
+    template: "%s | Kreore Café",
+  },
+  description,
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "es_US",
+    title: "Kreore Café | Colombian specialty coffee in New York",
+    description,
+    images: [
+      {
+        url: "/images/farm-tour.jpg",
+        width: 1012,
+        height: 1800,
+        alt: "A coffee farm tour in Colombia, visitors in white sombreros vueltiaos",
+      },
+    ],
+  },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const viewport: Viewport = {
+  themeColor: "#16120F",
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
+    <html lang="es" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Enables reveal styles only when JS runs, so content is never hidden without it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
+      <body className="flex min-h-screen flex-col">
         <Navbar />
-        <main className="flex-1 max-w-6xl mx-auto px-6 py-12">
+        <main id="contenido" className="flex-1">
           {children}
         </main>
         <Footer />

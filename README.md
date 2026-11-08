@@ -1,62 +1,53 @@
-# Purpose
-This repository is the base template that should be used for all future businesses, including basic files such as navbar, footer, and other configs.
+# Kreore Café
 
-# Business Name
+Website for **Kreore Café**, a Colombian specialty coffee brand in New York founded by Viviana Durán. Kreore is not a storefront: it pours coffee at pop-ups, supplies offices, caters, hosts events and runs the Kreore Woman community. Motto: *Creo porque oré.*
 
-Replace this README with business-specific details.
+The site is built as a set of coffee bag labels: each section is a full-bleed label in one varietal color (Pink Bourbon, Gesha, Pureza, Noir 82, Pacamara), with an inset rule frame and a label header row. Spanish is the primary voice (Cormorant Garamond); English sits underneath as the translation line (Hanken Grotesk). Full spec: `DESIGN.md`. Sources: `research/BRIEF.md`.
 
----
+## Pages
 
-## 🚀 Overview
+| Route | Content |
+|---|---|
+| `/` | Hero motto, linktree line, varietal shelf, services, Kreore Woman, MoCADA band, booking CTA |
+| `/cafes` | The six coffee lines as colored label bands, WhatsApp catalog |
+| `/servicios` | Office coffee supply, catering, event hosting, pop-ups |
+| `/comunidad` | Kreore Woman gatherings, past event, recruiting |
+| `/historia` | Founder story, creo / oré, founder sheet |
+| `/contacto` | WhatsApp, email, Instagram, host form, work with us |
 
-Short description of the business and what this website is for.
+## Stack
 
-Example:
-"This website serves as the official online presence for [Business Name], showcasing services, contact information, and brand identity."
+- Next.js 16 (App Router), React 19, TypeScript
+- Tailwind CSS 3 with brand tokens under `k.*` (`tailwind.config.ts`) and tone classes in `src/app/globals.css`
+- Fonts via `next/font/google`; photos via `next/image`
+- No backend, no form: every action is a WhatsApp, email, Instagram or Google Form link
 
----
+## Structure
 
-## 🛠 Tech Stack
+- `src/app/*` routes, `layout.tsx` (fonts, navbar, footer, metadata), `icon.svg`, `apple-icon.png`
+- `src/lib/site.ts` all contact links and business details
+- `src/lib/coffees.ts`, `src/lib/services.ts`, `src/lib/images.ts` content data
+- `src/lib/components/` `Label`, `Bilingual`, `Frame`, `Reveal`, `Action`, `Navbar`, `Footer`
 
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- Hosted on Vercel
-
----
-
-## 📂 Project Structure
-
-- `src/app` → App Router (homepage, layout, globals)
-- `src/app/pages` → Site pages (About, Contact, etc.)
-- `src/lib/components` → Shared UI components (Navbar/Footer)
-- `public` → Static assets
-
----
-
-## 🧑‍💻 Development
-
-Install dependencies:
+## Run
 
 ```bash
 npm install
-npm install --save-dev @types/react
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint     # TypeScript check
 ```
 
-Run locally:
+Set `NEXT_PUBLIC_SITE_URL` to the production domain so Open Graph URLs are absolute.
 
-```bash
-npm run dev
-```
+## Facts to confirm with the owner before launch
 
----
-
-## ✏️ Customization Checklist
-
-- [ ] Replace Business Name in navbar + footer
-- [ ] Update metadata in `src/app/layout.tsx`
-- [ ] Replace homepage content (`src/app/page.tsx`)
-- [ ] Update About + Contact pages (`src/app/pages/*`)
-- [ ] Replace favicon + assets in `public/`
-- [ ] Update SEO metadata
-- [ ] (Optional) Update Novus credit link text / URL in the footer
+- [ ] **MoCADA**: is it a current, ongoing location? Days and hours? (shown on `/` and `/contacto`)
+- [ ] Which phone to publish: 718-600-1155 (used) or 646-623-9961
+- [ ] Coffee details: tasting notes, origin farms, bag sizes and prices. **Pureza** and **Noir 82** currently say "Ask Viviana about this line."
+- [ ] Sachets are described as drip sachets (based on packaging in her photo)
+- [ ] Photo approvals, and whether the woman in `coffee-field.jpg` may be named
+- [ ] Vector logo files (the wordmark is currently live text in Hanken Grotesk 800)
+- [ ] Production domain (replaces the Merlin site?)
+- [ ] Upcoming gatherings, if she wants them listed
+- [ ] Spanish copy review by a native speaker

@@ -10,7 +10,7 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "oficinas",
+    slug: "office",
     es: "Oficinas",
     en: "Office coffee supply",
     lineEs: "Café colombiano de especialidad para el día a día de tu equipo.",
@@ -24,7 +24,7 @@ export const services: Service[] = [
     lineEn: "Coffee service for your meetings, celebrations and gatherings.",
   },
   {
-    slug: "eventos",
+    slug: "events",
     es: "Eventos",
     en: "Event hosting",
     lineEs: "Kreore organiza tu evento con el café en el centro.",

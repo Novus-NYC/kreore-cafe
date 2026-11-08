@@ -1,5 +1,24 @@
 # Kreore Café: design spec
 
+> **Revision 2 (2026-11-07): English default, EN / ES toggle, English routes, design pass.**
+> The client asked for English and Spanish "like the other website" (the My Lash Girl sister site). Sections below marked *(superseded)* were the first build. What is true now:
+>
+> **i18n.** `src/lib/i18n.tsx` (client): `LangProvider`, `useLang`, `T` and `Only`, same pattern as the sister site. English is the default; the server always renders English and a stored choice (`localStorage["kreore-lang"]`) is applied after mount, so there is no hydration mismatch. The provider sets `<html lang>` to `en` / `es`. `src/lib/components/lang-toggle.tsx` is a compact EN / ES switch (44px targets, `aria-pressed`, fixed-width so the navbar never shifts) in the desktop navbar and inside the mobile menu sheet. Shared strings live in `src/lib/copy.ts`; page copy uses `<T en="..." es="..." />` inline. One language is shown at a time: the old stacked `Bilingual` component is deleted. Spanish keeps the client's own words wherever they existed; Spanish for lines that only existed in English was written for this pass and **needs a native read by the client**. The motto *Creo porque oré.* stays Spanish in both modes (`lang="es"`), with "I create because I prayed." shown as its gloss only in English mode. Metadata (titles, descriptions) is English.
+>
+> **Routes.** `/coffees`, `/services`, `/community`, `/story`, `/contact`. `next.config.ts` redirects `/cafes`, `/servicios`, `/comunidad`, `/historia`, `/contacto` permanently (308). Service anchors: `#office`, `#catering`, `#events`, `#pop-ups`. Coffee anchors unchanged (`/coffees#gesha`).
+>
+> **Layout utilities.** `.bleed-right` / `.bleed-left` (globals.css) let a photo run past the container to the viewport edge at `lg`; `main` uses `overflow-x: clip` so these intentional breakouts never cause sideways scroll.
+>
+> **Motion.** One marquee site-wide (`CoffeeMarquee`, home only, under the hero): the six coffee names on strips of their label colors, 48s linear, pauses on hover, `aria-hidden`, stopped under `prefers-reduced-motion`. Reveals unchanged.
+>
+> **Section changes.**
+> - Home: hero farm photo is larger (5:7, bleeds off the right edge, hangs ~224px past the hero over the marquee) with a pureza "bag label" (KREORE / Origin / Poured in / Photo) laid over its left edge. Her-words line is now a 8/3 split with the English/Spanish tagline as a ruled italic aside. "Find us" is a full section: the MoCADA photo bleeds off the left edge and is pulled up into the Kreore Woman label, beside a huge italic *MoCADA.* (crop 4:3 at 50% 90% excludes the baked-in caption; MoCADA still needs owner confirmation). Pacamara CTA: full-width question, actions on a ruled line.
+> - Community: hero quote and CTA in full noir ink on bourbon (no reveal, visible on first paint), toast photo cropped on the mugs, bleeding right and dropping into the next label. "What a gathering looks like" is a pureza invitation / menu card (double rule frame, *Historias y Conexiones* title, ruled fields with varied type: V60 & French press, conversation, network, next date on Instagram) on a full gesha label. Petite Coffee Picnic is a ticket with a dashed perforated stub and an "Already happened" tag. Recruiting moved to pureza with an overlapping noir card.
+> - Story: hero is the etymology: KRE + ORÉ in the heavy wordmark face (ORÉ in bourbon), dictionary entries below each half (creo, verb, crear = I create; oré, verb, orar = I prayed), then the motto. The drying-canopy photo is a full-bleed 21:9 crop with a noir label overlapping its bottom edge.
+> - Contact: channels are huge serif rows on noir that fill with a varietal color on hover/focus (bourbon, pureza, gesha). Host card (bourbon, 8 cols) and work-with-us card (noir, 4 cols) overlap asymmetrically on pureza.
+> - Coffees: beans photo bleeds right and drops into the first band. Services: index rows invert on hover, office photo bleeds left, events form card is a pureza label with ruled Date / Place / Guests blanks.
+> - 404: "This bag has no label."
+
 Read alongside `AGENTS.md` (build standard) and `research/BRIEF.md` (facts and sources). Everything below is decided; build it as written. If a fact is not in this file or the brief, do not invent it.
 
 ## 1. The business in three sentences
@@ -13,7 +32,7 @@ Read alongside `AGENTS.md` (build standard) and `research/BRIEF.md` (facts and s
 Kreore already gives each coffee line its own color: Pink Bourbon (pink), Gesha (gold), Pureza (white), Noir 82 (black), Pacamara (yellow). The whole site is built like a set of specialty-coffee bag labels.
 
 - Each major section is a full-bleed "label" in one varietal color, with a thin rule border inset 16px from the edges, and a small label header row in uppercase tracked sans: `ORIGEN · COLOMBIA` on the left, `DESTINO · NUEVA YORK` on the right (or section-appropriate fields).
-- Bilingual like an export label: Spanish is the primary voice, set large in the serif. English sits underneath in the sans, smaller, as the "translation line". Never a language toggle. Every heading has both.
+- *(superseded by Revision 2: English default with an EN / ES toggle, one language at a time.)* Originally: Spanish primary voice with an English translation line under every heading.
 - The brand motto is the hero: **Creo porque oré.** ("I create because I prayed.") The name KREORE is literally built from *creo* + *oré*; show that in the hero by setting `KRE·ORÉ` with the split visible in the label header row: `KRE(O) + ORÉ = CREO PORQUE ORÉ`. Keep it elegant, not a puzzle: one small line.
 
 Logo-swap test: the varietal colors, the Spanish motto and the label grid cannot belong to any other business.
@@ -63,9 +82,9 @@ Do not use: juice cans, runners/yoga shots, the two headshots (identities unknow
 
 Routes (App Router, replace the template's `src/app/pages/*`; delete the template folder):
 
-`/` · `/cafes` · `/servicios` · `/comunidad` · `/historia` · `/contacto`
+`/` · `/coffees` · `/services` · `/community` · `/story` · `/contact` (Revision 2; the Spanish paths redirect)
 
-Nav labels (Spanish, with English `aria-label`-free plain text): Cafés, Servicios, Comunidad, Historia, Contacto. Primary nav CTA: **Escríbenos** (WhatsApp).
+Nav labels: Coffees, Services, Community, Story, Contact (ES: Cafés, Servicios, Comunidad, Historia, Contacto). Primary nav CTA: **Message us** / **Escríbenos** (WhatsApp).
 
 ### Home `/`
 1. **Hero (noir label).** Two columns 7/5 on desktop. Left: label row `ORIGEN · COLOMBIA` / `DESTINO · NUEVA YORK`; motto `Creo porque oré.` in italic Cormorant (huge, pureza); English line "Colombian specialty coffee, poured in New York."; tiny line `KRE + ORÉ` explanation: "Kreore comes from *creo* (I create) and *oré* (I prayed)."; CTAs: primary "Book coffee for your event" (WhatsApp) + secondary text link "See the coffees" → /cafes. Right: `farm-tour.jpg` in a tall frame that breaks out of the label's bottom edge by 64px into the next section (overlap). Hero must fit with CTAs visible above the fold at 1440×900 and the motto visible at 375.
@@ -127,11 +146,11 @@ Every coffee shows Spanish + English.
 ## 8. Components
 
 - `Label` section wrapper: props `tone` (noir | pureza | bourbon | gesha | pacamara), `fields: [left, right]`, children. Renders full-bleed bg, inset 1px rule frame (`outline` inset via an absolutely positioned div, `inset-4 md:inset-6`), the label header row.
-- `Bilingual` heading: `es` (serif, large) + `en` (sans, small, muted). Heading levels passed in.
+- *(removed in Revision 2)* `Bilingual` heading. Use `T` from `src/lib/i18n.tsx`.
 - `Frame` photo: next/image fill + aspect + caption row + shared grade.
 - `Navbar` (client): fixed, transparent over the noir hero with pureza text; after 24px scroll becomes pureza bg with noir text and a 1px bottom rule (transition 250ms). Mobile: full-screen noir sheet menu with close button, focus trap-light (focus first link on open, Escape closes, body scroll locked), links in big serif. Height 64px; `scroll-padding-top: 80px`.
 - `Footer`: noir, wordmark, motto, links, contacts, Instagram + Threads, `Made by Novus` link exactly (to https://novusnyc.org, target _blank rel noreferrer), year.
-- `Reveal` (client): IntersectionObserver adding `is-in`; CSS: opacity 0 → 1, translateY(16px) → 0, 600ms `cubic-bezier(.2,.7,.2,1)`; stagger via `--i` var 60ms. Plus one signature moment: hero motto letters are NOT animated individually; instead the hero photo reveals with a clip-path mask from bottom (700ms). Respect `prefers-reduced-motion` (everything visible, no transitions). No marquee, no parallax.
+- `Reveal` (client): IntersectionObserver adding `is-in`; CSS: opacity 0 → 1, translateY(16px) → 0, 600ms `cubic-bezier(.2,.7,.2,1)`; stagger via `--i` var 60ms. Plus one signature moment: hero motto letters are NOT animated individually; instead the hero photo reveals with a clip-path mask from bottom (700ms). Respect `prefers-reduced-motion` (everything visible, no transitions). No parallax. Revision 2 allows exactly one marquee (home coffee names).
 
 ## 9. Copy rules
 
@@ -144,7 +163,7 @@ Every coffee shows Spanish + English.
 
 - Title template: `%s | Kreore Café`, default "Kreore Café | Colombian specialty coffee in New York".
 - Description: "Colombian specialty coffee by Viviana Durán for New York events, offices, hotels and pop-ups. Creo porque oré."
-- `lang="es"` on html (primary language Spanish); English lines get `lang="en"` spans.
+- `lang="en"` on html by default; the language provider switches it to `es`. The motto carries `lang="es"`.
 - Favicon: create `src/app/icon.svg`: noir square with a pureza serif italic "K". Also `apple-icon.png` (180px, generate from the svg with a small node script or provide a static PNG made with ffmpeg if needed).
 - OG image: use `farm-tour.jpg` via `openGraph.images`.
 

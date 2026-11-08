@@ -1,5 +1,8 @@
 import Image from "next/image"
+import type { ReactNode } from "react"
 import type { Photo } from "@/lib/images"
+import { T } from "@/lib/i18n"
+import { copy } from "@/lib/copy"
 
 type FrameProps = {
   photo: Photo
@@ -9,7 +12,7 @@ type FrameProps = {
   preload?: boolean
   objectPosition?: string
   /** Right-hand caption field. */
-  note?: string
+  note?: ReactNode
   className?: string
   imgClassName?: string
   /** Hide the caption row (e.g. inside a coffee card that has its own label). */
@@ -44,7 +47,9 @@ export function Frame({
       </div>
       {bare ? null : (
         <figcaption className="label-row mt-3 flex justify-between gap-4">
-          <span>Foto · {photo.caption}</span>
+          <span>
+            <T t={copy.common.photo} /> · <T t={photo.caption} />
+          </span>
           {note ? <span>{note}</span> : null}
         </figcaption>
       )}

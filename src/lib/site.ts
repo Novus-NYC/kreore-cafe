@@ -25,15 +25,15 @@ export const site = {
 
 export const mailto = `mailto:${site.email}`
 
-export type NavItem = { href: string; label: string }
+export type NavItem = { href: string; label: { en: string; es: string } }
 
 export const nav: NavItem[] = [
-  { href: "/cafes", label: "Cafés" },
-  { href: "/servicios", label: "Servicios" },
-  { href: "/comunidad", label: "Comunidad" },
-  { href: "/historia", label: "Historia" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/coffees", label: { en: "Coffees", es: "Cafés" } },
+  { href: "/services", label: { en: "Services", es: "Servicios" } },
+  { href: "/community", label: { en: "Community", es: "Comunidad" } },
+  { href: "/story", label: { en: "Story", es: "Historia" } },
+  { href: "/contact", label: { en: "Contact", es: "Contacto" } },
 ]
 
 /** Routes whose first label is light (pureza or bourbon), so the transparent navbar uses noir ink. */
-export const lightTopRoutes = ["/servicios", "/comunidad", "/contacto"]
+export const lightTopRoutes = ["/services", "/community", "/contact"]

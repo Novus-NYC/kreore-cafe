@@ -151,6 +151,22 @@
   clip-path: inset(0 0 0 0);
 }
 
+/* The one marquee: coffee names drifting slowly, like a roll of labels. */
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .photo-zoom img {
   transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
@@ -173,11 +189,25 @@
   .photo-zoom:hover img {
     transform: none;
   }
+  .marquee-track {
+    animation: none;
+  }
   *,
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Intentional breakouts: a photo that runs past the container to the viewport edge.
+   main clips horizontal overflow, so these never cause sideways scroll. */
+@media (min-width: 1024px) {
+  .bleed-right {
+    margin-right: calc(-2.5rem - max(0px, (100vw - 1360px) / 2));
+  }
+  .bleed-left {
+    margin-left: calc(-2.5rem - max(0px, (100vw - 1360px) / 2));
   }
 }

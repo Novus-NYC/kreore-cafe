@@ -4,6 +4,7 @@ import { Cormorant_Garamond, Hanken_Grotesk } from "next/font/google"
 import Navbar from "@/lib/components/navbar"
 import Footer from "@/lib/components/footer"
 import { site } from "@/lib/site"
+import { LangProvider } from "@/lib/i18n"
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -33,7 +34,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    locale: "es_US",
+    locale: "en_US",
+    alternateLocale: ["es_US"],
     title: "Kreore Café | Colombian specialty coffee in New York",
     description,
     images: [
@@ -53,17 +55,19 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
       <head>
         {/* Enables reveal styles only when JS runs, so content is never hidden without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body className="flex min-h-screen flex-col">
-        <Navbar />
-        <main id="contenido" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <LangProvider>
+          <Navbar />
+          <main id="content" className="flex-1 overflow-x-clip">
+            {children}
+          </main>
+          <Footer />
+        </LangProvider>
       </body>
     </html>
   )

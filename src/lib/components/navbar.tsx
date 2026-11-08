@@ -4,9 +4,13 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { lightTopRoutes, nav, site } from "@/lib/site"
+import { useLang } from "@/lib/i18n"
+import { copy } from "@/lib/copy"
+import LangToggle from "./lang-toggle"
 
 export default function Navbar() {
   const pathname = usePathname()
+  const { t } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const toggleRef = useRef<HTMLButtonElement>(null)
@@ -74,17 +78,17 @@ export default function Navbar() {
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-[250ms] ease-label ${surface} ${ink}`}
     >
       <a
-        href="#contenido"
+        href="#content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:bg-k-pureza focus:px-4 focus:py-2 focus:text-k-noir"
       >
-        Saltar al contenido
+        {t(copy.nav.skip)}
       </a>
       <div className="wrap flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="wordmark flex min-h-[44px] items-center text-[1.35rem] leading-none" aria-label="Kreore Café, inicio">
+        <Link href="/" className="wordmark flex min-h-[44px] items-center text-[1.35rem] leading-none" aria-label={t(copy.nav.homeLabel)}>
           {site.wordmark}
         </Link>
 
-        <nav aria-label="Principal" className="hidden lg:block">
+        <nav aria-label={t(copy.nav.main)} className="hidden lg:block">
           <ul className="flex items-center gap-8">
             {nav.map((item) => {
               const active = pathname === item.href
@@ -97,7 +101,7 @@ export default function Navbar() {
                       active ? "underline decoration-1" : ""
                     }`}
                   >
-                    {item.label}
+                    {t(item.label)}
                   </Link>
                 </li>
               )
@@ -106,23 +110,24 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LangToggle className="hidden lg:flex" />
           <a
             href={site.whatsapp}
             target="_blank"
             rel="noreferrer"
-            className={`hidden min-h-[44px] items-center rounded-[2px] px-5 text-[0.95rem] font-bold transition-colors duration-200 sm:inline-flex ${cta}`}
+            className={`hidden min-h-[44px] min-w-[8.75rem] items-center justify-center rounded-[2px] px-5 text-[0.95rem] font-bold transition-colors duration-200 sm:inline-flex ${cta}`}
           >
-            Escríbenos
+            {t(copy.nav.cta)}
           </a>
           <button
             ref={toggleRef}
             type="button"
             className="inline-flex min-h-[44px] items-center gap-2 px-1 text-[0.95rem] font-bold lg:hidden"
             aria-expanded={open}
-            aria-controls="menu-movil"
+            aria-controls="mobile-menu"
             onClick={() => setOpen(true)}
           >
-            Menú
+            {t(copy.nav.menu)}
             <span aria-hidden="true" className="flex flex-col gap-[5px]">
               <span className="block h-px w-6 bg-current" />
               <span className="block h-px w-6 bg-current" />
@@ -133,11 +138,11 @@ export default function Navbar() {
 
       {open ? (
         <div
-          id="menu-movil"
+          id="mobile-menu"
           ref={sheetRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Menú"
+          aria-label={t(copy.nav.menu)}
           className="tone-noir fixed inset-0 z-[60] flex flex-col overflow-y-auto lg:hidden"
         >
           <div aria-hidden="true" className="rule pointer-events-none absolute inset-4 border" />
@@ -148,19 +153,19 @@ export default function Navbar() {
               onClick={close}
               className="inline-flex min-h-[44px] items-center gap-2 px-1 text-[0.95rem] font-bold"
             >
-              Cerrar <span aria-hidden="true" className="text-xl leading-none">×</span>
+              {t(copy.nav.close)} <span aria-hidden="true" className="text-xl leading-none">×</span>
             </button>
           </div>
           <div className="wrap relative flex flex-1 flex-col pb-10 pt-6">
-            <p className="label-row rule flex justify-between border-b pb-3">
-              <span>Origen · Colombia</span>
-              <span>Destino · Nueva York</span>
-            </p>
-            <nav aria-label="Menú móvil" className="mt-6">
+            <div className="label-row rule flex items-center justify-between border-b pb-1">
+              <span>{t(copy.nav.origin)}</span>
+              <LangToggle className="-mr-3 text-k-pureza" />
+            </div>
+            <nav aria-label={t(copy.nav.menu)} className="mt-6">
               <ul>
                 <li>
                   <Link href="/" onClick={() => setOpen(false)} className="rule block border-b py-3 font-serif text-[2.6rem] italic leading-tight">
-                    Inicio
+                    {t(copy.nav.home)}
                   </Link>
                 </li>
                 {nav.map((item) => (
@@ -171,7 +176,7 @@ export default function Navbar() {
                       aria-current={pathname === item.href ? "page" : undefined}
                       className="rule block border-b py-3 font-serif text-[2.6rem] leading-tight"
                     >
-                      {item.label}
+                      {t(item.label)}
                     </Link>
                   </li>
                 ))}
@@ -183,7 +188,7 @@ export default function Navbar() {
               rel="noreferrer"
               className="mt-auto inline-flex min-h-[52px] items-center justify-center rounded-[2px] bg-k-pureza px-6 font-bold text-k-noir"
             >
-              Escríbenos por WhatsApp
+              {t(copy.nav.ctaLong)}
             </a>
           </div>
         </div>
